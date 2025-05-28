@@ -5,7 +5,7 @@ import MainLayout from "./_layout/MainLayout";
 import { useConnectionStatus } from "./hooks/connectionStatus";
 
 import Home from "./pages/Home.page/Home";
-import NotFound from "./pages/PageNotFound.page/PageNotFound";
+import NotFound from "./pages/NotFound.page/PageNotFound";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
