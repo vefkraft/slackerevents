@@ -1,4 +1,4 @@
-import EventList from "../../components/EventDetails/event.detail";
+
 
 const Home = () => {
   return (
@@ -7,8 +7,6 @@ const Home = () => {
       <p className="text-lg text-gray-600 max-w-xl">
       </p>
 
-
-    <EventList />
 
     </div>
   );

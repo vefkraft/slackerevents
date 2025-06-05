@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useEvents } from "../../hooks/useEvents";
 import type { Event } from "../../hooks/useEvents";
-import MusicEmbed from "../musicEmbed";
+import MusicEmbed from "../EmbedURL/musicEmbed";
+import VideoEmbed from "../EmbedURL/videoEmbed";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -27,7 +28,10 @@ const ImageFromId: React.FC<{ id: string; alt: string }> = ({ id, alt }) => {
   if (!url) return null;
   return <img src={url} alt={alt} style={{ maxWidth: "300px" }} />;
 };
-const EventList: React.FC = () => {
+
+
+
+const EventDetail: React.FC = () => {
   const { data: events, loading, error } = useEvents();
 
   if (loading) return <p>Loading events...</p>;
@@ -44,7 +48,11 @@ const EventList: React.FC = () => {
           {event.title}
           </h2>
 
-          {event.music_embed_url && <MusicEmbed embedCode={event.music_embed_url} />}
+          <div>
+            {event.music_embed_url && <MusicEmbed embedCode={event.music_embed_url} />}
+
+          </div>
+
 
           <div 
           dangerouslySetInnerHTML={{ __html: event.description }} 
@@ -62,6 +70,7 @@ const EventList: React.FC = () => {
           <p>
             Capacity: {event.capacity}
           </p>
+            {event.video_embed_url && <VideoEmbed embedCode={event.video_embed_url} />}
 
           <p>
             {/* Start_date */}
@@ -89,4 +98,4 @@ const EventList: React.FC = () => {
   );
 };
 
-export default EventList;
+export default EventDetail;
