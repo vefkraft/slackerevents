@@ -1,0 +1,62 @@
+.navbar {
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 5rem !important;
+  background-color: #1f2937 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 2rem !important;
+  z-index: 10000 !important;
+}
+
+.Logo {
+  position: relative !important;
+  z-index: 10001 !important;
+}
+
+.bm-burger-button {
+  position: absolute !important;
+  width: 36px !important;
+  height: 30px !important;
+  right: 24px !important;
+  top: 24px !important;
+  z-index: 10001 !important;
+}
+
+.bm-burger-bars {
+  background: #ec4899 !important;
+  height: 4px !important;
+  border-radius: 2px !important;
+}
+
+.bm-burger-bars-hover {
+  background: #f472b6 !important;
+}
+
+.bm-menu-wrap {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+.bm-menu {
+  background: #1f2937 !important;
+  padding: 3rem 2rem 2rem 2rem !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding-top: 8rem !important;
+}
+
+.bm-overlay {
+  background: none !important;
+}
+
+
