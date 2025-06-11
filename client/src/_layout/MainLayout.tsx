@@ -1,13 +1,17 @@
-// src/_layout/MainLayout.tsx
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "../components/Navigation/navigation";
 
 const MainLayout: React.FC = () => {
+  const location = useLocation();
+
+  // Hide others if necessary
+  const hideNav = /^\/events\/[^\/]+$/.test(location.pathname);
+
   return (
     <>
-      <Navigation />
+      {!hideNav && <Navigation />}
 
-      <main className="min-h-screen px-4 py-6">
+      <main className="margin-0 padding-0">
         <Outlet />
       </main>
 
