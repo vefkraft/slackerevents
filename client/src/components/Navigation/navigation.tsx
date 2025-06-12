@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './navigation.styled.css';
 import Logo from '../../assets/Logo.png'
+import Socials from '../Ui/socials';
 
 const navLinks = [
   { to: '/', text: 'HOME' },
@@ -65,6 +66,10 @@ const Navigation: React.FC = () => {
               {text}
             </Link>
           ))}
+          <footer className="flex justify-center items-center mt-4">
+            <h5></h5>
+            <Socials />
+          </footer>
         </Menu>
       )}
     </nav>
