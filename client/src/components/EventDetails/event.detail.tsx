@@ -43,14 +43,15 @@ const EventDetail: React.FC = () => {
 
       {/* Wrapper top section */}
       <div className="w-full mx-auto bg-blue-100">
-        {typeof event.image === "string" && event.image.trim() !== "" ? (
-          <ImageFromIdOrUrl src={event.image} alt={event.title} />
-        ) : event.video_embed_url ? (
+        {event.video_embed_url ? (
           <VideoEmbed embedCode={event.video_embed_url} />
+        ) : typeof event.image === "string" && event.image.trim() !== "" ? (
+          <ImageFromIdOrUrl src={event.image} alt={event.title} />
         ) : (
           <p className="text-gray-500 italic text-center">Intet medie valgt</p>
         )}
       </div>
+
 
 
 
