@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
+
+
+.contact-container {
+    color: var(--Neutral-color-100, #E6E6E6);
+  text-align: center;
+
+  /* Heading 1 */
+  font-family: "Squada One", sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background: linear-gradient(0deg, var(--bck_black-100, #474747) 0%, var(--bck_black-100, #474747) 100%), var(--bck_black-100, #474747);
+  }
+  
+body {
+    height: 100%;
+    background: linear-gradient(
+      0deg,
+      var(--bck_black-100, #474747) 0%,
+      var(--bck_black-100, #474747) 100%
+    )
+}
