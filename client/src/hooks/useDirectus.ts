@@ -1,32 +1,11 @@
+// Custom React hook for fetching data from a Directus collection.
+// It builds a query string from the provided params, fetches data from the API,
+// and manages loading and error state. Returns the fetched data, loading, and error status.
 import { useState, useEffect } from "react";
+import type { Params, DirectusResponse } from "../types";
+import { buildQuery } from "./queryHelpers";
 
 const API_URL = import.meta.env.VITE_API_URL as string;
-
-type DirectusResponse<T> = {
-  data: T[];
-};
-
-type Params = {
-  fields?: string[];
-  filter?: Record<string, any>;
-  [key: string]: any;
-};
-
-function buildQuery(params?: Params): string {
-  if (!params) return "";
-  const query = new URLSearchParams();
-
-  for (const [key, value] of Object.entries(params)) {
-    if (Array.isArray(value)) {
-      // fx fields: ["*", "venue.*"]
-      query.set(key, value.join(","));
-    } else {
-      query.set(key, JSON.stringify(value));
-    }
-  }
-
-  return `?${query.toString()}`;
-}
 
 export function useDirectus<T>(collection: string, params?: Params) {
   const [data, setData] = useState<T[] | null>(null);
@@ -50,7 +29,7 @@ export function useDirectus<T>(collection: string, params?: Params) {
     };
 
     fetchData();
-  }, [collection, JSON.stringify(params)]); // re-fetch hvis params ændrer sig
+  }, [collection, JSON.stringify(params)]); // re-fetch if params or collection changes
 
   return { data, loading, error };
 }

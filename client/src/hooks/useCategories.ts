@@ -1,10 +1,7 @@
 import { useDirectus } from "./useDirectus";
+import type { Category } from "../types";
 
-export type Category = {
-  id: string;
-  name: string;
-};
 
 export function useCategories() {
-  return useDirectus<Category>("category");
+  return useDirectus<Category>("categories");
 }

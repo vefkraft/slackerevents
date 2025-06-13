@@ -9,7 +9,7 @@ import { useConnectionStatus } from "./hooks/connectionStatus";
 import Home from "./pages/Home.page/Home";
 import Login from "./pages/LogIn.page/LogIn";
 import Gallery from "./pages/Gallery.page/Gallery";
-import EventList from "./components/EventDetails/event.detail";
+import EventList from "./pages/EventList.page/EventList";
 import EventDetails from "./pages/EventDetails.page/EventDetails";
 import NotFound from "./pages/NotFound.page/PageNotFound";
 import Contact from "./pages/Contact.page/Contact";

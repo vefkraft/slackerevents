@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './navigation.styled.css';
 import Logo from '../../assets/Logo.png'
-import Socials from '../Ui/socials';
+import Socials from '../Ui/SocialMedia/socials';
 
 const navLinks = [
   { to: '/', text: 'HOME' },

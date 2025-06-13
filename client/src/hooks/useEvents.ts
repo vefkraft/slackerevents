@@ -1,47 +1,36 @@
+import type { Event } from "../types";
 import { useDirectus } from "./useDirectus";
 
-export type Event = {
-  id: string;
-  is_active: boolean;
-  slug: string;
-  title: string;
-  description: string;
-  image?: string; // ID
-  image_or_video?: string;
-  price?: number;
-  capacity?: number;
-  start_date?: string;
-  end_date?: string;
-  music_embed_url?: string;
-  video_embed_url?: string;
+/**
+ * Custom hook to fetch events from Directus.
+ * Optionally filters by category name if provided.
+ * Returns event data with related categories and venue details.
+ */
+export function useEvents(filter?: { category?: string }) {
+  // Build filter object for category if provided
+  const filters = filter?.category
+    ? {
+        categories: {
+          categories_id: {
+            category_name: {
+              _eq: filter.category,
+            },
+          },
+        },
+      }
+    : {};
 
-  // Relations
-  venue?: {
-    id: string;
-    place: string;
-    address: string;
-    city?: {
-      id: string;
-      city_name: string;
-      postal_code: string;
-      country?: {
-        id: string;
-        name: string;
-        code: string;
-      };
-    };
-  };
-};
-
-export function useEvents() {
+  // Fetch events with expanded fields for categories and venue
   return useDirectus<Event>("event", {
     fields: [
       "*",
-      "venue.*", 
-      "venue.city.*", 
-      "venue.city.country.*" 
-    ]
+      "categories.categories_id.id",
+      "categories.categories_id.category_name",
+      "categories.categories_id.sort",
+      "venue.*",
+      "venue.city.*",
+      "venue.city.country.*"
+    ],
+    filter: filters
   });
 }
-
-
