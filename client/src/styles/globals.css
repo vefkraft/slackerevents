@@ -24,3 +24,8 @@ a:hover,
 button:hover {
   cursor: url('../../public/assets/icons/pointer.svg') 10 10, auto;
 }
+
+
+h1, h2 {
+  font-family: 'Squada One', cursive;
+}
