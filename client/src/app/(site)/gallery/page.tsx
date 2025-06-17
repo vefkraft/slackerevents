@@ -93,11 +93,23 @@ export default function GalleryPage() {
       case "md":
         return 5;
       case "lg":
-        return 6;
-      case "xl":
         return 7;
       default:
-        return 3;
+        return 7;
+    }
+  };
+
+  // Get uniform height based on screen size
+  const getUniformHeight = () => {
+    switch (screenSize) {
+      case "mobile":
+        return 180;
+      case "md":
+        return 210;
+      case "lg":
+        return 230;
+      default:
+        return 230;
     }
   };
 
@@ -112,7 +124,7 @@ export default function GalleryPage() {
     return offsets;
   };
 
-  const uniformHeight = 250;
+  const uniformHeight = getUniformHeight();
   const gap = 8;
   const displayImages = getDisplayImages();
   const columnCount = getColumnCount();
@@ -167,21 +179,26 @@ export default function GalleryPage() {
                 <div className="relative w-full h-full overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]">
                   {item.image ? (
                     <>
-                    {/* Maybe we should wrap this in a Link an it navigates to their insta post or previus event*/}
+                      {/* Maybe we should wrap this in a Link an it navigates to their insta post or previus event*/}
                       <Image
                         src={`http://localhost:8056/assets/${item.image}`}
                         alt={item.title || "Gallery image"}
                         fill
                         style={{ objectFit: "cover" }}
                         className="transition-transform duration-300 group-hover:scale-105"
-                        sizes="(max-width: 768px) 33vw, (max-width: 1024px) 20vw, (max-width: 1280px) 16vw, (max-width: 1536px) 14vw, 12vw"
+                        sizes="(max-width: 768px) 33vw, (max-width: 1024px) 20vw, (max-width: 1280px) 16vw, (max-width: 1536px) 14vw, 180px"
                       />
                       <div className="absolute bottom-0 left-0 right-0 p-1 text-white bg-black/50 backdrop-blur-[1px]">
-                        <h3 className="text-ml font-bold mb-1 drop-shadow-lg">
+                        <h3
+                          className="text-ml font-bold mb-1 drop-shadow-lg leading-tight line-clamp-2"
+                          style={{ fontSize: "clamp(0.875rem, 1vw, 1.25rem)" }} // Dynamically adjusts font size
+                        >
                           {item.title || "Concert Name"}
                         </h3>
                         <p className="text-xs opacity-90 drop-shadow">
-                          {item.date_created ? new Date(item.date_created).toLocaleDateString() : ''}
+                          {item.date_created
+                            ? new Date(item.date_created).toLocaleDateString()
+                            : ""}
                         </p>
                       </div>
                     </>

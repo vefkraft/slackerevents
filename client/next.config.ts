@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["localhost"], // ← skift til dit faktiske domæne
+    domains: ["localhost"], // ← Switch domain for real one when done
     remotePatterns: [
       {
         protocol: 'http',
