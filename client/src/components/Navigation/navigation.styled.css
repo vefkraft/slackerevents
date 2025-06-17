@@ -1,58 +1,92 @@
+.navWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .navbar {
-  position: relative !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 5rem !important;
-  background-color: #1f2937 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 0 2rem !important;
-  z-index: 10000 !important;
+  position: relative;
+  top: 1rem;
+  left: 0;
+  width: 95vw;
+  height: 4.5rem;
+  background-color: var(--color-black70);
+  backdrop-filter: blur(12px); 
+  -webkit-backdrop-filter: blur(12px); /* Safari browser */
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 10 !important;
 }
 
 .Logo {
-  position: relative !important;
-  z-index: 10001 !important;
+  position: relative;
+  z-index: 10001;
 }
 
 .bm-burger-button {
-  position: absolute !important;
-  width: 36px !important;
-  height: 30px !important;
-  right: 24px !important;
-  top: 24px !important;
+  position: absolute;
+  width: 36px;
+  height: 30px;
+  right: 45px;
+  top: 40px;
   z-index: 10001 !important;
 }
 
 .bm-burger-bars {
-  background: #ec4899 !important;
+  background: var(--color-mrGrey) !important;
   height: 4px !important;
-  border-radius: 2px !important;
+  border-radius: 2px;
+  transition: 200ms ease-in-out;
 }
 
-.bm-burger-bars-hover {
-  background: #f472b6 !important;
+/* First Line */
+.bm-burger-bars:nth-child(1) {
+  
+  width: 50%;
+}
+
+/* Third Line */
+.bm-burger-bars:nth-child(3) {
+  width: 50%;
+  margin-left: auto;
+  display: block;
+}
+
+
+/* Hover: Første streg */
+.bm-burger-button:hover .bm-burger-bars:nth-child(1) {
+  width: 100% !important;
+  transition: 200ms ease-in-out;
+}
+
+/* Hover: Tredje streg */
+.bm-burger-button:hover .bm-burger-bars:nth-child(3) {
+  width: 100% !important;
+  transition: 200ms ease-in-out;
 }
 
 .bm-menu-wrap {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw !important;
-  height: 100vh !important;
+  height: 100vh;
+  z-index: 0 !important;
 }
 
 .bm-menu {
-  background: #1f2937 !important;
-  padding: 3rem 2rem 2rem 2rem !important;
-  height: 100vh !important;
-  width: 100vw !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  padding-top: 8rem !important;
+  background: var(--background);
+  padding: 3rem 2rem 2rem 2rem;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 8rem;
 }
 
 .bm-overlay {

@@ -1,25 +1,31 @@
 "use client";
-
+// ------------ Imports ---------------
 import { useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
+// --- hooks --- //
 import { useEvents } from "@/hooks/useEvents";
+// --- props --- //
 import type { Event } from "@/types/index";
+// --- components --- //
 import MusicEmbed from "@/components/EmbedURL/music/musicEmbed";
 import VideoEmbed from "@/components/EmbedURL/video/videoEmbed";
 import TicketCounter from "@/components/TicketCounter/ticketCounter";
 import Button from "@/components/UI/UniversalButton/button";
 
+// --- constants --- //
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-// ⚡ Bruger Next.js <Image> for optimering
+// ⚡ Next.js <Image /> for dynamic images
 const ImageFromIdOrUrl: React.FC<{ src?: string; alt: string }> = ({ src, alt }) => {
   if (!src || typeof src !== "string" || src.trim() === "") {
     console.warn("ImageFromIdOrUrl received invalid src:", src);
     return null;
   }
-
+  // If src is a URL, use it directly; otherwise, construct the URL
   const imageUrl = src.startsWith("http") ? src : `${API_URL}/assets/${src}`;
+
+
 
   return (
     <div className="relative w-full h-[400px]">
@@ -48,6 +54,7 @@ const EventDetail: React.FC = () => {
 
   const memoizedMusicEmbed = useMemo(() => {
     if (!event?.music_embed_url) return null;
+    
     return (
       <div className="mt-4">
         <MusicEmbed embedCode={event.music_embed_url} />
@@ -66,6 +73,9 @@ const EventDetail: React.FC = () => {
     setShowModal(true);
   };
 
+
+
+  // Render the event details
   return (
     <div className="margin-0 space-y-4">
       {/* Media */}
@@ -124,7 +134,7 @@ const EventDetail: React.FC = () => {
         </Button>
       </div>
 
-      {/* Modal */}
+      {/* Modal  - dummy */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-8 rounded shadow-lg">

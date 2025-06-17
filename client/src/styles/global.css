@@ -1,0 +1,87 @@
+/*--------------- Imports -----------------*/
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/*--------- Variables for CSS styles ---------*/
+:root {
+  /* Colors */
+  --color-acidYellow: #EFFF00;
+  --color-mrGrey: #E6E6E6;
+  --color-matBlack: #2E2E2E;
+  --color-secondary: #64748b;
+  --color-black70: rgba(71, 71, 71, 0.7);
+
+  /* Colortheme */
+  --background: #2E2E2E;
+  --foreground: #171717;
+
+  /* Typography */
+  --font-family: "Squada One";
+  --font-weight: 400;
+  --line-height: 1.5;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+
+  /* Global styles */
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  /* color-scheme: light dark; */          /* OFF */
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: #ffffff;
+    --color-bg: #242424;
+  }
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-text: #213547;
+    --color-bg: #ffffff;
+  }
+}
+
+
+/*------------- Global Styles -------------*/
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-black);
+  color: var(--color-text);
+  cursor: url('/assets/icons/cursor.svg') 10 10, auto;
+}
+
+/* scrollbar hidden */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* cursor */
+a:hover,
+button:hover {
+  cursor: url('/assets/icons/pointer.svg') 10 10, auto;
+}
+
+

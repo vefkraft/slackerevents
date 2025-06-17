@@ -1,7 +1,5 @@
 "use client";
-// -----------------------------
-// Imports
-// -----------------------------
+// ------------ Imports ---------------
 import type { ReactNode } from "react";
 import { SessionProvider } from "next-auth/react";
 import { useConnectionStatus } from "../../hooks/connectionStatus";
@@ -40,10 +38,12 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
 
   // Render layout with session and navigation
   return (
-    <SessionProvider>
-      <Navigation />
-      <main className="min-h-screen px-4 py-8">{children}</main>
-      {/* <Footer /> */}
-    </SessionProvider>
+
+      <SessionProvider>
+        <Navigation />
+        <main className="min-h-screen px-4 py-8">{children}</main>
+      </SessionProvider>
+
   );
+
 }
