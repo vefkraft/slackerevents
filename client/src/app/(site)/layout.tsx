@@ -42,7 +42,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <SessionProvider>
       <Navigation />
-      <main className="min-h-screen px-4 py-8">{children}</main>
+      <main className="min-h-screen">{children}</main>
       {/* <Footer /> */}
     </SessionProvider>
   );

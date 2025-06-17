@@ -75,3 +75,13 @@ export type Event = {
     };
   };
 };
+
+export interface Gallery {
+  id: string;
+  title: string;
+  description?: string;
+  image?: string;
+  status?: string;
+  date_created?: string;
+  date_updated?: string;
+}
