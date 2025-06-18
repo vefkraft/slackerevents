@@ -21,10 +21,12 @@ import "./navigation.styled.css";
 // Navigation links configuration
 // -----------------------------
 const navLinks: NavLink[] = [
+  // public
   { to: "/",           text: "HOME",         desktopOnly: true },
   { to: "/all-events", text: "EVENTS",       desktopOnly: true },
+  { to: "/contact",    text: "CONTACT",      desktopOnly: true },
   { to: "/gallery",    text: "GALLERY",      desktopOnly: true },
-  { to: "/contact",    text: "CONTACT US",   desktopOnly: true },
+  // useraccessible
   { to: "/favorites",  text: "FAVORITES",    requiresAuth: true },
   { to: "/my-tickets", text: "MY TICKETS",   requiresAuth: true },
   { to: "/settings",   text: "SETTINGS",     requiresAuth: true },
@@ -32,8 +34,8 @@ const navLinks: NavLink[] = [
 
 // User-specific links (shown in dropdown)
 const userLinks = [
-  { to: "/favorites", text: "Favorites" },
-  { to: "/settings", text: "Settings" },
+  { to: "/favorites",  text: "Favorites" },
+  { to: "/settings",   text: "Settings" },
   { to: "/my-tickets", text: "My Tickets" },
 ];
 
@@ -124,7 +126,7 @@ const Navigation: React.FC = () => {
                 key={to}
                 href={to}
                 className={`text-white text-2xl px-2 font-semibold hover:text-[var(--color-acidYellow)] transition ${
-                  pathname === to ? "text-[var(--color-acidYellow)]" : ""
+                  pathname === to ? "text:[var(--color-acidYellow)]" : ""
                 }`}
               >
                 {text}
@@ -188,7 +190,7 @@ const Navigation: React.FC = () => {
       {/* Mobile Navigation (Burger Menu) */}
       {/* ------------------------- */}
       {isMobile && (
-        <div className="flexbox justify-between items-center ">
+      <div className="flexbox justify-between items-center ">
           {/* Burger menu */}
           <Menu
             isOpen={menuOpen}
@@ -215,6 +217,7 @@ const Navigation: React.FC = () => {
               {text}
             </Link>
           ))}
+
             <footer className="flex justify-center mt-6">
               <Socials />
             </footer>
@@ -239,7 +242,7 @@ const Navigation: React.FC = () => {
               </Button>
             )}
           </div>
-        </div>
+      </div>
       )}
     
     </div>

@@ -11,7 +11,7 @@ module.exports = {
         squada: ["'Squada One'", "sans-serif"],
       },
       colors: {
-        acidYellow: "#EFFF00",
+        
       },
     },
   },
