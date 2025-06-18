@@ -32,8 +32,6 @@ export default function GalleryPage() {
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  console.log("Fetched gallery data:", gallery);
-
   if (loading)
     return (
       <div className="flex justify-center items-center min-h-[50vh]">
