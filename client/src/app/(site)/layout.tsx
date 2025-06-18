@@ -1,7 +1,5 @@
 "use client";
-// -----------------------------
-// Imports
-// -----------------------------
+// ------------ Imports ---------------
 import type { ReactNode } from "react";
 import { SessionProvider } from "next-auth/react";
 import { useConnectionStatus } from "../../hooks/connectionStatus";
@@ -46,4 +44,5 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
       {/* <Footer /> */}
     </SessionProvider>
   );
+
 }

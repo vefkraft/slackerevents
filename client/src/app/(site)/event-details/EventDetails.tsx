@@ -1,7 +1,5 @@
 "use client";
-// -----------------------------
-// Imports
-// -----------------------------
+// ------------ Imports ---------------
 import EventDetail from "@/components/EventDetails/event.detail";
 
 const EventDetails = () => {

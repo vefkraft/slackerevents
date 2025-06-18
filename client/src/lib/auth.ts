@@ -65,6 +65,12 @@ export const {
   // Custom sign-in page
   pages: { signIn: "/login" },
 
+  session: {
+    strategy: "jwt",      // Use JWT for session
+    maxAge: 60 * 15,      // 15 minutes
+    updateAge: 60 * 5,    // 5 minutes
+  },
+
   // -----------------------------
   // Callbacks
   // -----------------------------

@@ -24,7 +24,7 @@ export type DirectusResponse<T> = {
 // Props for universal Button component 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "danger";
+  variant?: "default" | "primary" | "secondary" | "danger";
 };
 
 // Parameters for building Directus API queries, including fields and filters.
