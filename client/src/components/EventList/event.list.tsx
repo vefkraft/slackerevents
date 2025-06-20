@@ -83,13 +83,13 @@ export default function Events({ onCheckout }: EventsProps) {
             className="border rounded-xl shadow p-4 bg-white hover:shadow-md transition"
           >
             {/* Event details and link */}
-            <Link href={`/events/${event.id}`}>
+            <Link href={`/all-events/${event.id}`}>
               <h3 className="text-lg font-semibold mb-2 underline">
                 {event.title}
               </h3>
               <p>{event.venue?.address}</p>
               <p className="text-sm text-gray-600 mb-2">
-                {new Date(event.start_date ?? "").toLocaleDateString("is_IS", {
+                {new Date(event.start_date ?? "").toLocaleDateString("IS", {
                   day:   "numeric",
                   month: "long",
                   hour:  "2-digit",
