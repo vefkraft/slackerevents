@@ -1,18 +1,13 @@
 "use client";
-
-// -----------------------------
-// Imports
-// -----------------------------
-import { useState } from "react";
-import Link from "next/link";
-import { useEvents } from "@/hooks/useEvents";
-import { useCategories } from "@/hooks/useCategories";
+// ------------ Imports ---------------
 import type { Category, Event } from "@/types";
+import { useEvents } from "@/hooks/useEvents";
+import { useState } from "react";
+import { useCategories } from "@/hooks/useCategories";
 import Button from "@/components/UI/UniversalButton/button";
+import Link from "next/link";
 
-// -----------------------------
-// Props
-// -----------------------------
+// ------------ Props ---------------
 type EventsProps = {
   onCheckout: (data: { event: Event; qty: number; total: number }) => void;
 };
@@ -43,9 +38,7 @@ export default function Events({ onCheckout }: EventsProps) {
               (typeof b.sort === "number" ? b.sort : Infinity)
   );
 
-  // -----------------------------
-  // Render
-  // -----------------------------
+// ------------ Render ---------------
   return (
     <div>
       {/* Category filter buttons */}

@@ -18,6 +18,10 @@ export default function EventListPage() {
       {/* Event list with checkout handler */}
       <Events onCheckout={(data) => setModal(data)} />
 
+
+
+
+
       {/* Simulated payment modal */}
       {modal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-50">

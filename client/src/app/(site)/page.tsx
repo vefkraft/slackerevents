@@ -8,7 +8,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-center">
-      <h1 className=" font-bold text-4xl mb-6">
+      <h1 className=" font-bold text-4xl mb-6 text-blue-600">
         Welcome to SlackerEvent 🎟️
       </h1>
 

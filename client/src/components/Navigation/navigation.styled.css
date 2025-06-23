@@ -4,6 +4,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  z-index: 1000 !important;
 }
 
 .navbar {
@@ -20,7 +21,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  z-index: 10 !important;
 }
 
 .Logo {
@@ -78,6 +78,7 @@
   height: 100vh;
   z-index: 0 !important;
   backdrop-filter: var(--blur-effect); 
+  background-color: var(--blur-colorDark);
   -webkit-backdrop-filter: blur(12px);
 }
 

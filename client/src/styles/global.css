@@ -33,7 +33,8 @@
   --spacing-lg: 32px;
 
   /* Blur effect */
-  --blur-effect: blur(12px); 
+  --blur-effect: blur(12px);
+  --blur-colorDark: rgba(0, 0, 0, 0.5); 
 
  
 
@@ -41,7 +42,7 @@
   font-weight: var(--font-weight);
   line-height: var(--line-height);
   /* color-scheme: light dark; */          /* OFF */
-  color: var(--color-text);
+  color: var(--color-textBlack);
   background-color: var(--background);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -75,8 +76,6 @@ body {
 }
 
 body {
-  background: var(--color-black);
-  color: var(--color-text);
   cursor: url('/assets/icons/cursor.svg') 10 10, auto;
 }
 
