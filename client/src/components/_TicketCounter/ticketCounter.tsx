@@ -1,8 +1,5 @@
 "use client";
-
-// -----------------------------
-// Imports
-// -----------------------------
+// ------------ Imports ---------------
 import { useEffect, useState } from "react";
 import { TicketCounterProps } from "../../types/index";
 

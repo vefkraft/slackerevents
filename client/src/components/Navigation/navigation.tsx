@@ -1,49 +1,49 @@
 "use client";
-
-// -----------------------------
-// Imports
-// -----------------------------
-import { slide as Menu } from "react-burger-menu";
+// ------------ Imports ---------------
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { slide as Menu } from "react-burger-menu";
 import { usePathname, useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
+import Link from "next/link";
+import type { NavLink } from "@/types";
+// ------------ Images ---------------
+import Image from "next/image";
 import Logo from "../../../public/Logo2.svg";
 import Logout from "../../../public/assets/icons/logout.svg";
 import profile from "../../../public/assets/icons/Profile.svg";
+import Profile2 from "../../../public/assets/icons/profile2.jsx";
+// ------------ Components ---------------
 import Socials from "@/components/UI/SocialMedia/socials";
 import Button from "@/components/UI/UniversalButton/button";
-import type { NavLink } from "@/types";
+// ------------ Styling ---------------
 import "./navigation.styled.css";
-import Profile2 from "../../../public/assets/icons/profile2.jsx";
 
-// -----------------------------
-// Navigation links configuration
-// -----------------------------
+
+
+//* Navigation links configuration
 const navLinks: NavLink[] = [
   // public
   { to: "/", text: "HOME", desktopOnly: true },
   { to: "/all-events", text: "EVENTS", desktopOnly: true },
   { to: "/contact", text: "CONTACT", desktopOnly: true },
   { to: "/gallery", text: "GALLERY", desktopOnly: true },
-  // useraccessible
+  // user-accessible
   { to: "/favorites", text: "FAVORITES", requiresAuth: true },
   { to: "/my-tickets", text: "MY TICKETS", requiresAuth: true },
   { to: "/settings", text: "SETTINGS", requiresAuth: true },
 ];
 
-// User-specific links (shown in dropdown)
+//* User-specific links (shown in dropdown)
 const userLinks = [
   { to: "/favorites", text: "Favorites" },
   { to: "/settings", text: "Settings" },
   { to: "/my-tickets", text: "My Tickets" },
 ];
 
-// -----------------------------
-// Main Navigation Component
-// -----------------------------
+
+// ------------ Navigation ---------------
 const Navigation: React.FC = () => {
+
   // Routing and session hooks
   const pathname = usePathname();
   const router = useRouter();
@@ -58,11 +58,11 @@ const Navigation: React.FC = () => {
   // Ref for user dropdown (to detect outside clicks)
   const dropdownWrapperRef = useRef<HTMLDivElement>(null);
 
-  // -----------------------------
-  // Effects
-  // -----------------------------
 
-  // Detect mobile viewport
+  
+// ------------ Effect ---------------
+
+  //* Detect mobile viewport
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
@@ -70,7 +70,7 @@ const Navigation: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Prevent background scroll when mobile menu is open
+  //* Prevent background scroll when mobile menu is open
   useEffect(() => {
     if (!menuOpen) return;
     const y = window.scrollY;
@@ -81,7 +81,7 @@ const Navigation: React.FC = () => {
     };
   }, [menuOpen]);
 
-  // Close user dropdown on outside click
+  //* Close user dropdown on outside click
   useEffect(() => {
     if (!userMenuOpen) return;
     const close = (e: MouseEvent) => {
@@ -93,7 +93,10 @@ const Navigation: React.FC = () => {
     return () => document.removeEventListener("mousedown", close);
   }, [userMenuOpen]);
 
-  // -----------------------------
+
+
+
+// ------------ Render ---------------
   return (
     <div className="navWrapper font-squada">
       <nav className="navbar">
@@ -113,7 +116,7 @@ const Navigation: React.FC = () => {
           <div className="flex items-center gap-2">
             {/* Main navigation links */}
             {navLinks
-              .filter((l) => l.desktopOnly)
+              .filter((lenght) => lenght.desktopOnly)
               .map(({ to, text }) => (
                 <Link
                   key={to}
@@ -134,7 +137,7 @@ const Navigation: React.FC = () => {
             {/* User dropdown menu */}
             <div className="relative" ref={dropdownWrapperRef}>
               <Button
-                onClick={() => setUserMenuOpen((v) => !v)}
+                onClick={() => setUserMenuOpen((value) => !value)}
                 variant="default"
                 className="text-xl hover:p-2.5 p-2.5 transition-all duration-300 rounded-full text-[var(--color-acidYellow)] hover:text-[var(--color-textBlack)] hover:bg-[var(--color-acidYellow)] leading-none "
               >
@@ -187,8 +190,9 @@ const Navigation: React.FC = () => {
           </div>
         )}
       </nav>
+
       {/* ------------------------- */}
-      {/* Mobile Navigation (Burger Menu) */}
+      {/* Mobile Navigation */}
       {/* ------------------------- */}
       {isMobile && (
         <div className="flexbox justify-between items-center ">
@@ -241,7 +245,9 @@ const Navigation: React.FC = () => {
                   className="w-9 h-9"
                 />
               </Link>
+
             ) : (
+
               <Button onClick={() => signOut()} className="">
                 <Image
                   src={Logout}
