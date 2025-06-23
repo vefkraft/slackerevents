@@ -15,7 +15,11 @@ type Props = {
 const ImageUrlorID: React.FC<Props> = ({ src, alt }) => {
   if (!src) return null;
 
-  const imageUrl = src.startsWith("http") ? src : `${API_URL}/assets/${src}`;
+  const cacheBust = "?v=" + new Date().getTime();
+  const imageUrl = src.startsWith("http") 
+    ? `${src}${cacheBust}`
+    : `${API_URL}/assets/${src}${cacheBust}`;
+
 
   return (
     <div className="relative w-full aspect-video overflow-hidden">
