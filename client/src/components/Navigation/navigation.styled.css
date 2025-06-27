@@ -1,0 +1,98 @@
+.navWrapper {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1000 !important;
+}
+
+.navbar {
+  position: relative;
+  top: 1rem;
+  left: 0;
+  width: 95vw;
+  height: 4.5rem;
+  background-color: var(--color-black70);
+  backdrop-filter: var(--blur-effect); 
+  -webkit-backdrop-filter: blur(12px); /* Safari browser */
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.Logo {
+  position: relative;
+  z-index: 10001;
+}
+
+.bm-burger-button {
+  position: absolute;
+  width: 36px;
+  height: 30px;
+  right: 45px;
+  top: 40px;
+  z-index: 10001 !important;
+}
+
+.bm-burger-bars {
+  background: var(--color-mrGrey) !important;
+  height: 4px !important;
+  border-radius: 2px;
+  transition: 200ms ease-in-out;
+}
+
+/* First Line */
+.bm-burger-bars:nth-child(1) {
+  
+  width: 50%;
+}
+
+/* Third Line */
+.bm-burger-bars:nth-child(3) {
+  width: 50%;
+  margin-left: auto;
+  display: block;
+}
+
+
+/* Hover: Første streg */
+.bm-burger-button:hover .bm-burger-bars:nth-child(1) {
+  width: 100% !important;
+  transition: 200ms ease-in-out;
+}
+
+/* Hover: Tredje streg */
+.bm-burger-button:hover .bm-burger-bars:nth-child(3) {
+  width: 100% !important;
+  transition: 200ms ease-in-out;
+}
+
+.bm-menu-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh;
+  z-index: 0 !important;
+  backdrop-filter: var(--blur-effect); 
+  background-color: var(--blur-colorDark);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.bm-menu {
+  backdrop-filter: var(--blur-effect); 
+  -webkit-backdrop-filter: blur(12px);
+  padding: 3rem 2rem 2rem 2rem;
+  height: 100vh;
+  width: 100vw;
+  padding-top: 8rem;
+}
+
+.bm-overlay {
+  background: none !important;
+}
+
+
