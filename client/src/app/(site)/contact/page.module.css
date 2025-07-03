@@ -1,0 +1,167 @@
+.container {
+  color: var(--Neutral-color-100, #E6E6E6);
+  text-align: center;
+  font-family: "Squada One";
+  font-size: 32px;
+  font-weight: 400;
+  margin-top: 100px;
+  padding:  3rem;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container h1 {
+  margin-bottom: 5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  
+}
+
+.formGroup {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.label {
+  margin-bottom: 0.75rem;
+  font-family: "Microsoft Sans Serif";
+  font-size: 16px;
+  color: #e6e6e6;
+  display: block;
+}
+
+.input,
+.textarea {
+  padding: 0.75rem 1rem;
+  border-radius: 50px;
+  border: 1px solid var(--Main-color-100, #efff00);
+  background-color: #2e2e2e;
+  color: #e6e6e6;
+  font-family: "Microsoft Sans Serif";
+  font-size: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.textarea {
+  border-radius: 12px;
+  height: 120px;
+  resize: vertical;
+}
+
+.button {
+  border-radius: 9999px;
+  background: var(--Main-color-100, #EFFF00);
+  width: 100%;
+  max-width: 320px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Microsoft Sans Serif";
+  font-size: 14px;
+  font-weight: 600;
+  color: #2e2e2e;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+
+
+/* Responsive styles */
+@media (max-width: 768px) { 
+
+  .body {
+    overflow: hidden;
+    height: 100%;
+  }
+  .container {
+    font-size: 28px;
+    margin-top: 60px;
+  }
+
+  .form {
+    gap: 2rem;
+    
+  }
+
+  .input,
+  .textarea {
+    font-size: 16px;
+    
+  }
+
+  .button {
+    font-size: 12px;
+    height: 36px;
+  }
+  
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.socials a {
+  color: #e6e6e6; /* white/gray on black background */
+  font-size: 2rem;
+  transition: color 0.3s ease;
+}
+
+.socials a:hover {
+  color: var(--Main-color-100, #EFFF00); /* Optional: highlight on hover */
+}
+
+/*social icon waves*/
+
+@keyframes waveJump {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-25px);
+  }
+}
+
+.icon {
+  display: inline-block;
+  font-size: 2.5rem;
+  color: #e6e6e6;
+  animation: waveJump 1s infinite ease-in-out;
+  transition: transform 0.3s ease;
+}
+
+.icon:hover 
+{
+  animation-play-state: paused;
+  transform: scale(1.1);
+}
+    
+.icon1 {
+  animation-delay: 0s;
+}
+
+.icon2 {
+  animation-delay: 0.15s;
+}
+
+.icon3 {
+  animation-delay: 0.3s;
+}
