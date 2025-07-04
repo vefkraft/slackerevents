@@ -10,7 +10,7 @@ export function useEvents(filter?: { category?: string }) {
   // Build filter object for category if provided
   const filters = filter?.category
     ? {
-        categories: {
+        category: {
           categories_id: {
             category_name: {
               _eq: filter.category,
@@ -21,7 +21,7 @@ export function useEvents(filter?: { category?: string }) {
     : {};
 
   // Fetch events with expanded fields for categories and venue
-  return useDirectus<Event>("event", {
+  return useDirectus<Event>("events", {
     fields: [
       "*",
       "categories.categories_id.id",

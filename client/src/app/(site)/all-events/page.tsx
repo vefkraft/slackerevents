@@ -1,8 +1,5 @@
 "use client";
-
-// -----------------------------
-// Imports
-// -----------------------------
+// ------------ Imports ---------------
 import Events from "@/components/EventList/event.list";
 import { useState } from "react";
 import type { Event } from "@/types";
@@ -20,6 +17,10 @@ export default function EventListPage() {
     <>
       {/* Event list with checkout handler */}
       <Events onCheckout={(data) => setModal(data)} />
+
+
+
+
 
       {/* Simulated payment modal */}
       {modal && (

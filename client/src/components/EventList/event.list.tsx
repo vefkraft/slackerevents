@@ -1,18 +1,13 @@
 "use client";
-
-// -----------------------------
-// Imports
-// -----------------------------
-import { useState } from "react";
-import Link from "next/link";
-import { useEvents } from "@/hooks/useEvents";
-import { useCategories } from "@/hooks/useCategories";
+// ------------ Imports ---------------
 import type { Category, Event } from "@/types";
+import { useEvents } from "@/hooks/useEvents";
+import { useState } from "react";
+import { useCategories } from "@/hooks/useCategories";
 import Button from "@/components/UI/UniversalButton/button";
+import Link from "next/link";
 
-// -----------------------------
-// Props
-// -----------------------------
+// ------------ Props ---------------
 type EventsProps = {
   onCheckout: (data: { event: Event; qty: number; total: number }) => void;
 };
@@ -43,9 +38,7 @@ export default function Events({ onCheckout }: EventsProps) {
               (typeof b.sort === "number" ? b.sort : Infinity)
   );
 
-  // -----------------------------
-  // Render
-  // -----------------------------
+// ------------ Render ---------------
   return (
     <div>
       {/* Category filter buttons */}
@@ -83,13 +76,13 @@ export default function Events({ onCheckout }: EventsProps) {
             className="border rounded-xl shadow p-4 bg-white hover:shadow-md transition"
           >
             {/* Event details and link */}
-            <Link href={`/events/${event.id}`}>
+            <Link href={`/all-events/${event.id}`}>
               <h3 className="text-lg font-semibold mb-2 underline">
                 {event.title}
               </h3>
               <p>{event.venue?.address}</p>
               <p className="text-sm text-gray-600 mb-2">
-                {new Date(event.start_date ?? "").toLocaleDateString("is_IS", {
+                {new Date(event.start_date ?? "").toLocaleDateString("IS", {
                   day:   "numeric",
                   month: "long",
                   hour:  "2-digit",

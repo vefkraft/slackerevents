@@ -1,32 +1,43 @@
 "use client";
+
 // -----------------------------
 // Imports
 // -----------------------------
-import { fallDown as Menu } from "react-burger-menu";
+import { slide as Menu } from "react-burger-menu";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
-
-import Logo from "../../../public/Logo.png";
+import Logo from "../../../public/Logo2.svg";
+import Logout from "../../../public/assets/icons/logout.svg";
 import profile from "../../../public/assets/icons/Profile.svg";
 import Socials from "@/components/UI/SocialMedia/socials";
 import Button from "@/components/UI/UniversalButton/button";
 import type { NavLink } from "@/types";
 import "./navigation.styled.css";
+import Profile2 from "../../../public/assets/icons/profile2.jsx";
 
 // -----------------------------
 // Navigation links configuration
 // -----------------------------
 const navLinks: NavLink[] = [
-  { to: "/",           text: "HOME",         desktopOnly: true },
-  { to: "/all-events", text: "EVENTS",       desktopOnly: true },
-  { to: "/gallery",    text: "GALLERY",      desktopOnly: true },
-  { to: "/contact",    text: "CONTACT US",   desktopOnly: true },
-  { to: "/favorites",  text: "FAVORITES",    requiresAuth: true },
-  { to: "/my-tickets", text: "MY TICKETS",   requiresAuth: true },
-  { to: "/settings",   text: "SETTINGS",     requiresAuth: true },
+  // public
+  { to: "/", text: "HOME", desktopOnly: true },
+  { to: "/all-events", text: "EVENTS", desktopOnly: true },
+  { to: "/contact", text: "CONTACT", desktopOnly: true },
+  { to: "/gallery", text: "GALLERY", desktopOnly: true },
+  // useraccessible
+  { to: "/favorites", text: "FAVORITES", requiresAuth: true },
+  { to: "/my-tickets", text: "MY TICKETS", requiresAuth: true },
+  { to: "/settings", text: "SETTINGS", requiresAuth: true },
+];
+
+// User-specific links (shown in dropdown)
+const userLinks = [
+  { to: "/favorites", text: "Favorites" },
+  { to: "/settings", text: "Settings" },
+  { to: "/my-tickets", text: "My Tickets" },
 ];
 
 // -----------------------------
@@ -46,6 +57,10 @@ const Navigation: React.FC = () => {
 
   // Ref for user dropdown (to detect outside clicks)
   const dropdownWrapperRef = useRef<HTMLDivElement>(null);
+
+  // -----------------------------
+  // Effects
+  // -----------------------------
 
   // Detect mobile viewport
   useEffect(() => {
@@ -79,157 +94,177 @@ const Navigation: React.FC = () => {
   }, [userMenuOpen]);
 
   // -----------------------------
-  // Render
-  // -----------------------------
   return (
-    <nav className="navbar flex items-center justify-between px-4 py-2">
-      {/* Logo (always visible) */}
-      <Link href="/">
-        <Image src={Logo} alt="Logo" className="Logo" priority />
-      </Link>
+    <div className="navWrapper font-squada">
+      <nav className="navbar">
+        {/* Logo */}
+        <Link
+          href="/"
+          onClick={() => setMenuOpen(false)}
+          className="flex align-center "
+        >
+          <Image src={Logo} alt="Logo" className="Logo" priority />
+        </Link>
 
-      {/* Desktop Navigation */}
-      {!isMobile && (
-        <div className="flex items-center gap-6">
-          {/* Main navigation links */}
-          {navLinks
-            .filter((l) => l.desktopOnly)
-            .map(({ to, text }) => (
+        {/* ------------------------- */}
+        {/* Desktop Navigation */}
+        {/* ------------------------- */}
+        {!isMobile && (
+          <div className="flex items-center gap-2">
+            {/* Main navigation links */}
+            {navLinks
+              .filter((l) => l.desktopOnly)
+              .map(({ to, text }) => (
+                <Link
+                  key={to}
+                  href={to}
+                  className={`p-[10px_20px] text-2xl font-semibold rounded-full transition-all duration-300 
+                  text-[var(--color-acidYellow)] 
+                  hover:bg-[var(--color-acidYellow)] hover:text-[var(--color-textBlack)] 
+                  ${
+                    pathname === to
+                      ? "bg-[var(--color-acidYellow)] text-[var(--color-textBlack)]"
+                      : ""
+                  }`}
+                >
+                  {text}
+                </Link>
+              ))}
+
+            {/* User dropdown menu */}
+            <div className="relative" ref={dropdownWrapperRef}>
+              <Button
+                onClick={() => setUserMenuOpen((v) => !v)}
+                variant="default"
+                className="text-xl hover:p-2.5 p-2.5 transition-all duration-300 rounded-full text-[var(--color-acidYellow)] hover:text-[var(--color-textBlack)] hover:bg-[var(--color-acidYellow)] leading-none "
+              >
+                <Profile2 src={profile} alt="Profile" />
+              </Button>
+
+              {/* Dropdown content */}
+              {userMenuOpen && (
+                <div className="absolute right-[-2rem] top-[4rem] w-[150px] border border-[var(--color-acidYellow)] rounded shadow-lg z-50">
+                  {/* If not logged in, show login */}
+                  {!isLoggedIn ? (
+                    <Link
+                      href={`/login?callbackUrl=${encodeURIComponent(
+                        pathname
+                      )}`}
+                      className="mt-4 w-full text-center text-xl px-3 py-1 rounded transition font-medium bg-blue-600 text-white hover:bg-blue-700 block"
+                      onClick={() => setUserMenuOpen(false)}
+                    >
+                      Log in
+                    </Link>
+                  ) : (
+                    <>
+                      {/* Authenticated user links */}
+                      {userLinks.map(({ to, text }) => (
+                        <Link
+                          key={to}
+                          href={to}
+                          onClick={() => setMenuOpen(false)}
+                          className={`text-white text-sm font-bold py-4 w-full flex flex-col text-center hover:text-[var(--color-acidYellow)] transition ${
+                            pathname === to
+                              ? "text-[var(--color-acidYellow)]"
+                              : ""
+                          }`}
+                        >
+                          {text}
+                        </Link>
+                      ))}
+                      <Button
+                        onClick={() => signOut()}
+                        variant="danger"
+                        className="w-full text-left px-4 py-2"
+                      >
+                        Log out
+                      </Button>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </nav>
+      {/* ------------------------- */}
+      {/* Mobile Navigation (Burger Menu) */}
+      {/* ------------------------- */}
+      {isMobile && (
+        <div className="flexbox justify-between items-center ">
+          {/* Burger menu */}
+          <Menu
+            isOpen={menuOpen}
+            onStateChange={({ isOpen }) => setMenuOpen(isOpen)}
+            right
+            burgerButtonClassName={
+              menuOpen ? "bm-burger-button open" : "bm-burger-button"
+            }
+          >
+            {/* All navigation links */}
+            {navLinks.map(({ to, text, requiresAuth }) => (
               <Link
                 key={to}
-                href={to}
-                className={`text-white font-semibold hover:text-pink-400 transition ${
-                  pathname === to ? "underline" : ""
+                href={
+                  requiresAuth && !isLoggedIn
+                    ? `/login?callbackUrl=${encodeURIComponent(to)}`
+                    : to
+                }
+                onClick={() => setMenuOpen(false)}
+                className={`text-[var(--color-acidYellow)] text-2xl font-bold py-4 w-full text-right hover:text-[var(--color-text)] transition ${
+                  pathname === to ? "text-[var(--color-acidYellow)]" : ""
                 }`}
               >
                 {text}
               </Link>
             ))}
 
-          {/* User dropdown menu */}
-          <div className="relative" ref={dropdownWrapperRef}>
-            <Button
-              onClick={() => setUserMenuOpen((v) => !v)}
-              variant="secondary"
-              className="text-xl leading-none px-2 py-1 bg-transparent"
-            >
-              <Image src={profile} alt="Profile" />
-            </Button>
+            <footer className="flex justify-center mt-6">
+              <Socials />
+            </footer>
+          </Menu>
 
-            {/* Dropdown content */}
-            {userMenuOpen && (
-              <div className="absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-lg py-2 z-[9999]">
-                {/* If not logged in, show login */}
-                {!isLoggedIn ? (
-                  <Link
-                    href={`/login?callbackUrl=${encodeURIComponent(pathname)}`}
-                    className="mt-4 w-full text-center text-xl px-3 py-1 rounded transition font-medium bg-blue-600 text-white hover:bg-blue-700 block"
-                    onClick={() => setUserMenuOpen(false)}
-                  >
-                    Log in
-                  </Link>
-                ) : (
-                  <>
-                    {/* Authenticated user links */}
-                    <Link
-                      href="/favorites"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      Favorites
-                    </Link>
-                    <Link
-                      href="/settings"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      Settings
-                    </Link>
-                    <Link
-                      href="/my-tickets"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      My Tickets
-                    </Link>
-                    <Button
-                      onClick={() => signOut()}
-                      variant="danger"
-                      className="w-full text-left px-4 py-2"
-                    >
-                      Log out
-                    </Button>
-                  </>
-                )}
-              </div>
+          {/* Login/Logout button - OUTSIDE the menu */}
+          <div className="absolute z-50 right-[105px] top-9">
+            {!isLoggedIn ? (
+              <Link
+                className=""
+                onClick={() => setMenuOpen(false)}
+                href={`/login?callbackUrl=${encodeURIComponent(pathname)}`}
+                aria-label="Login"
+              >
+                <Image
+                  src={profile}
+                  alt="Profile"
+                  width={32}
+                  height={32}
+                  className="w-9 h-9"
+                />
+              </Link>
+            ) : (
+              <Button onClick={() => signOut()} className="">
+                <Image
+                  src={Logout}
+                  alt="Profile"
+                  width={400}
+                  height={400}
+                  className="w-9 h-9"
+                />
+              </Button>
             )}
           </div>
         </div>
       )}
-
-      {/* Mobile Navigation (Burger Menu) */}
-      {isMobile && (
-        <Menu
-          isOpen={menuOpen}
-          onStateChange={({ isOpen }) => setMenuOpen(isOpen)}
-          right
-          burgerButtonClassName={
-            menuOpen ? "bm-burger-button open" : "bm-burger-button"
-          }
-          className="position-absolute"
-        >
-          {/* All navigation links */}
-          {navLinks.map(({ to, text, requiresAuth }) => (
-            <button
-              key={to}
-              onClick={() => {
-                setMenuOpen(false);
-                // If link requires auth and user is not logged in, redirect to login with callback
-                if (requiresAuth && !isLoggedIn) {
-                  router.push(`/login?callbackUrl=${encodeURIComponent(to)}`);
-                } else {
-                  router.push(to);
-                }
-              }}
-              className={`text-white text-2xl font-bold py-4 w-full text-center hover:text-pink-400 transition ${
-                pathname === to ? "underline" : ""
-              }`}
-            >
-              {text}
-            </button>
-          ))}
-
-          {/* Login/Logout button for mobile */}
-          {!isLoggedIn ? (
-            <Link
-              href={`/login?callbackUrl=${encodeURIComponent(pathname)}`}
-              className="mt-4 w-full text-center text-xl px-3 py-1 rounded transition font-medium bg-blue-600 text-white hover:bg-blue-700 block"
-              onClick={e => {
-                e.preventDefault(); // Prevent default navigation
-                setMenuOpen(false); // Close menu
-                router.push(`/login?callbackUrl=${encodeURIComponent(pathname)}`); // Navigate to login
-              }}
-            >
-              Log in
-            </Link>
-          ) : (
-            <Button
-              onClick={() => {
-                setMenuOpen(false);
-                signOut();
-              }}
-              variant="danger"
-              className="mt-4 w-full text-center text-xl"
-            >
-              Log out
-            </Button>
-          )}
-
-          {/* Social media footer */}
-          <footer className="flex justify-center mt-6">
-            <Socials />
-          </footer>
-        </Menu>
-      )}
-    </nav>
+    </div>
   );
 };
+
+// -----------------------------
+// Helper function to check if a URL is a safe redirect - helps prevent open redirects to external sites.
+// -----------------------------
+function isSafeRedirect(url: string) {
+  // Kun relative interne links tillades
+  return url.startsWith("/") && !url.startsWith("//");
+}
 
 export default Navigation;

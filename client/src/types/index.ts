@@ -24,7 +24,7 @@ export type DirectusResponse<T> = {
 // Props for universal Button component 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "danger";
+  variant?: "default" | "primary" | "secondary" | "danger";
 };
 
 // Parameters for building Directus API queries, including fields and filters.
@@ -44,18 +44,16 @@ export type Category = {
 // Represents an event, including details, categories, and venue information.
 export type Event = {
   id: string;
-  is_active: boolean;
   slug: string;
   title: string;
   description: string;
   image?: string;
-  image_or_video?: string;
+  video?: string;
   price?: number;
-  capacity?: number;
+  ticket_quantity?: number;
   start_date?: string;
   end_date?: string;
-  music_embed_url?: string;
-  video_embed_url?: string;
+  spotify_url?: string;
   categories?: {
     categories_id: Category;
   }[];
@@ -69,8 +67,8 @@ export type Event = {
       postal_code: string;
       country?: {
         id: string;
-        name: string;
-        code: string;
+        country_name: string;
+        country_code: string;
       };
     };
   };

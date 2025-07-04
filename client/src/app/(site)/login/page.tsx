@@ -1,8 +1,6 @@
 // src/app/(site)/login/page.tsx
 "use client";
-// -----------------------------
-// Imports
-// -----------------------------
+// ------------ Imports ---------------
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
