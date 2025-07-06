@@ -5,6 +5,8 @@ This is a Next.js frontend project styled with [Tailwind CSS](https://tailwindcs
 
 anotehr test commit
 
+another one bites the dust
+
 ---
 
 ## 🚀 Getting Started
