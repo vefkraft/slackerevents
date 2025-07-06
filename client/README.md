@@ -3,6 +3,8 @@
 Welcome to the SlackerEvent client!  
 This is a Next.js frontend project styled with [Tailwind CSS](https://tailwindcss.com/) and custom CSS variables.
 
+test
+
 ---
 
 ## 🚀 Getting Started
