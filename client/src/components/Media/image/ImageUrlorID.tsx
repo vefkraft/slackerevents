@@ -1,5 +1,8 @@
 "use client";
+// ------------ Imports ---------------
+import React from "react";
 
+// Environment variable for API URL
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 type Props = {
@@ -9,10 +12,14 @@ type Props = {
 
 
 //* This component let you use either a Directus asset ID or a full URL to display an image. 
-const ImageFromIdOrUrl: React.FC<Props> = ({ src, alt }) => {
+const ImageUrlorID: React.FC<Props> = ({ src, alt }) => {
   if (!src) return null;
 
-  const imageUrl = src.startsWith("http") ? src : `${API_URL}/assets/${src}`;
+  const cacheBust = "?v=" + new Date().getTime();
+  const imageUrl = src.startsWith("http") 
+    ? `${src}${cacheBust}`
+    : `${API_URL}/assets/${src}${cacheBust}`;
+
 
   return (
     <div className="relative w-full aspect-video overflow-hidden">
@@ -25,4 +32,4 @@ const ImageFromIdOrUrl: React.FC<Props> = ({ src, alt }) => {
   );
 };
 
-export default ImageFromIdOrUrl;
+export default ImageUrlorID;

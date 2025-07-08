@@ -6,11 +6,11 @@ import { useParams } from "next/navigation";
 import type { Event } from "../../types";
 import { useEvents } from "../../hooks/useEvents";
 //* Media Components
-import Image from "@/components/Media/image/Image";
+import ImageUrlorID from "@/components/Media/image/ImageUrlorID";
 import MusicEmbed from "@/components/Media/music/musicEmbed";
 import VideoPlayer from "@/components/Media/video/videoEmbed";
 //* Components
-import TicketCounter from "../TicketCounter/ticketCounter";
+import TicketCounter from "../_TicketCounter/ticketCounter";
 import Button from "../UI/UniversalButton/button";
 
 
@@ -56,7 +56,7 @@ const EventDetail: React.FC = () => {
           <VideoPlayer src={event.video} />
         ) : event.image ? (
           <div className="relative w-full">
-            <Image src={event.image} alt={event.title} />
+            <ImageUrlorID src={event.image} alt={event.title} />
           </div>
         ) : (
           <p className="text-gray-500 italic text-center">No media selected</p>

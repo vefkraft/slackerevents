@@ -1,6 +1,6 @@
 "use client";
 // ------------ Imports ---------------
-import Events from "@/components/EventList/event.list";
+import Events from "@/components/_EventList/event.list";
 import { useState } from "react";
 import type { Event } from "@/types";
 
