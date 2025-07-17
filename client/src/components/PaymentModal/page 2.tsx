@@ -252,6 +252,10 @@ export default function PaymentModal() {
           <StripePaymentForm count={count} setCount={setCount} />
         </Elements>
       </div>
+      {/* Footer */}
+      <div className={styles.footer}>
+        <span>© 2025 by Vefkraft</span>
+      </div>
     </div>
   );
 }
